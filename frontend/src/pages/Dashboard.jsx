@@ -84,9 +84,9 @@ export default function Dashboard() {
             </div>
 
             {/* Search bar */}
-            <form onSubmit={handleSearch} className="flex w-full sm:w-auto">
-              <div className="relative flex-1 sm:w-72">
-                <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-beige-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <form onSubmit={handleSearch} className="flex w-full md:w-auto relative group">
+              <div className="relative flex-1 md:w-80">
+                <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-beige-400 group-focus-within:text-forest-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
                 <input
@@ -97,26 +97,29 @@ export default function Dashboard() {
                     setShowSuggestions(true);
                   }}
                   onFocus={() => setShowSuggestions(true)}
-                  onBlur={() => setShowSuggestions(false)}
+                  onBlur={() => {
+                    // Slight delay to allow clicking on suggestion
+                    setTimeout(() => setShowSuggestions(false), 200);
+                  }}
                   placeholder="Search a disease..."
-                  className="input-field pl-10 pr-4"
+                  className="input-field pl-10 pr-4 w-full"
                 />
 
                 {/* Dropdown Suggestions */}
                 {showSuggestions && search.trim() && suggestions.length > 0 && (
-                  <ul className="absolute z-10 top-full left-0 w-full mt-2 bg-white border border-beige-200 rounded-xl shadow-card overflow-hidden animate-slide-up">
+                  <ul className="absolute z-50 top-full left-0 right-0 mt-2 bg-white border border-beige-200 rounded-xl shadow-card overflow-hidden animate-slide-up max-h-60 overflow-y-auto">
                     {suggestions.map((s) => (
                       <li
                         key={s.id}
-                        onMouseDown={(e) => {
-                          e.preventDefault(); // Prevents input from losing focus early
+                        onClick={() => {
                           setSearch(s.name);
                           setShowSuggestions(false);
+                          navigate(`/remedy/disease?q=${encodeURIComponent(s.name)}`);
                         }}
                         className="px-4 py-3 hover:bg-forest-50 flex items-center gap-3 transition-colors border-b border-beige-100 last:border-b-0 cursor-pointer"
                       >
                         <span className="text-xl flex-shrink-0">{s.icon}</span>
-                        <div className="truncate">
+                        <div className="flex-1 min-w-0">
                           <p className="text-sm font-semibold text-forest-800 truncate">{s.name}</p>
                           <p className="text-xs text-beige-400 truncate">{s.category}</p>
                         </div>
@@ -125,13 +128,13 @@ export default function Dashboard() {
                   </ul>
                 )}
               </div>
-              <button type="submit" className="ml-2 btn-primary py-2 px-4 text-sm whitespace-nowrap">Search</button>
+              <button type="submit" className="ml-2 btn-primary py-2 px-6 text-sm whitespace-nowrap">Search</button>
             </form>
           </div>
         </div>
 
         {/* ── Stats Row ───────────────────────────────────────────────────────── */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8 animate-slide-up">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 animate-slide-up">
           {[
             { icon: '🌿', label: 'Remedies Generated', value: stats.total },
             { icon: '♡', label: 'Saved Remedies',     value: stats.saved },
