@@ -27,8 +27,8 @@ app.use(cors({
   origin: (origin, cb) => {
     // Allow requests with no origin (curl, mobile apps, Render health checks)
     if (!origin || allowedOrigins.includes(origin)) return cb(null, true);
-    // Allow any *.pages.dev or *.cloudflare.com subdomain
-    if (/\.pages\.dev$/.test(origin) || /\.cloudflareaccess\.com$/.test(origin)) return cb(null, true);
+    // Allow any Cloudflare or Netlify subdomains
+    if (/\.pages\.dev$/.test(origin) || /\.netlify\.app$/.test(origin)) return cb(null, true);
     cb(new Error(`CORS blocked: ${origin}`));
   },
   credentials: true,
