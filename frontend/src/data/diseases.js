@@ -1,0 +1,36 @@
+export const DISEASES = [
+  { id: 'arthritis',       name: 'Arthritis',             icon: '🦴', category: 'Musculoskeletal',  description: 'Joint inflammation & pain' },
+  { id: 'diabetes',        name: 'Diabetes',              icon: '🩸', category: 'Metabolic',        description: 'Blood sugar imbalance' },
+  { id: 'hypertension',    name: 'High Blood Pressure',   icon: '💓', category: 'Cardiovascular',   description: 'Elevated blood pressure' },
+  { id: 'anxiety',         name: 'Anxiety & Stress',      icon: '🧠', category: 'Mental Health',    description: 'Overthinking & nervousness' },
+  { id: 'insomnia',        name: 'Insomnia',              icon: '🌙', category: 'Sleep',             description: 'Difficulty falling asleep' },
+  { id: 'cold-flu',        name: 'Cold & Flu',            icon: '🤧', category: 'Respiratory',      description: 'Common cold & influenza' },
+  { id: 'digestive',       name: 'Digestive Issues',      icon: '🌿', category: 'Digestive',        description: 'Indigestion & gut problems' },
+  { id: 'skin-disorder',   name: 'Skin Disorders',        icon: '🌸', category: 'Skin',             description: 'Eczema, psoriasis & acne' },
+  { id: 'headache',        name: 'Headache & Migraine',   icon: '💆', category: 'Neurological',     description: 'Chronic head pain' },
+  { id: 'liver',           name: 'Liver Problems',        icon: '🫀', category: 'Organ Health',     description: 'Liver function issues' },
+  { id: 'kidney-stones',   name: 'Kidney Stones',         icon: '💎', category: 'Organ Health',     description: 'Renal calculi formation' },
+  { id: 'pcos',            name: 'PCOS',                  icon: '🌺', category: 'Hormonal',         description: 'Polycystic ovary syndrome' },
+  { id: 'hair-loss',       name: 'Hair Loss',             icon: '💇', category: 'Cosmetic',         description: 'Alopecia & thinning hair' },
+  { id: 'obesity',         name: 'Obesity / Weight',      icon: '⚖️', category: 'Metabolic',        description: 'Weight management issues' },
+  { id: 'constipation',    name: 'Constipation',          icon: '🌾', category: 'Digestive',        description: 'Irregular bowel movements' },
+  { id: 'acidity',         name: 'Acidity & GERD',        icon: '🔥', category: 'Digestive',        description: 'Acid reflux & heartburn' },
+  { id: 'asthma',          name: 'Asthma',                icon: '💨', category: 'Respiratory',      description: 'Breathing difficulties' },
+  { id: 'anemia',          name: 'Anemia',                icon: '🩺', category: 'Blood',            description: 'Low hemoglobin levels' },
+  { id: 'joint-pain',      name: 'Joint Pain',            icon: '🦵', category: 'Musculoskeletal',  description: 'Chronic joint discomfort' },
+  { id: 'back-pain',       name: 'Back Pain',             icon: '🪑', category: 'Musculoskeletal',  description: 'Lumbar & spinal pain' },
+  { id: 'thyroid',         name: 'Thyroid Issues',        icon: '🧬', category: 'Hormonal',         description: 'Hypo/hyperthyroidism' },
+  { id: 'depression',      name: 'Depression',            icon: '🌧️', category: 'Mental Health',    description: 'Low mood & energy' },
+  { id: 'cholesterol',     name: 'High Cholesterol',      icon: '🧪', category: 'Cardiovascular',   description: 'Elevated lipid levels' },
+  { id: 'uti',             name: 'Urinary Tract (UTI)',   icon: '🚿', category: 'Urinary',          description: 'Urinary tract infection' },
+  { id: 'immunity',        name: 'Low Immunity',          icon: '🛡️', category: 'Immunity',         description: 'Frequent infections' },
+  { id: 'menstrual',       name: 'Menstrual Issues',      icon: '🌡️', category: 'Hormonal',         description: 'Irregular or painful periods' },
+  { id: 'memory',          name: 'Memory & Focus',        icon: '🔬', category: 'Neurological',     description: 'Concentration & memory lapses' },
+  { id: 'fatigue',         name: 'Chronic Fatigue',       icon: '😴', category: 'General',          description: 'Persistent tiredness' },
+  { id: 'cold-hands',      name: 'Poor Circulation',      icon: '🤲', category: 'Cardiovascular',   description: 'Cold extremities & numbness' },
+  { id: 'eye-strain',      name: 'Eye Strain',            icon: '👁️', category: 'Sensory',          description: 'Eye fatigue & dryness' },
+];
+
+export const CATEGORIES = [...new Set(DISEASES.map((d) => d.category))].sort();
+
+export const getDiseaseById = (id) => DISEASES.find((d) => d.id === id);

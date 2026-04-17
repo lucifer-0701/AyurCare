@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Lato:wght@300;400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base Reset ──────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+  }
+
+  body {
+    font-family: 'Lato', system-ui, sans-serif;
+    background-color: #FAFAF7;
+    color: #2D3E35;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  ::selection {
+    background: rgba(74, 124, 89, 0.2);
+    color: #1E3A2F;
+  }
+}
+
+/* ─── Component Classes ───────────────────────────────────── */
+@layer components {
+
+  /* Glassmorphism card */
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-md border border-white/60 rounded-2xl shadow-card;
+  }
+
+  .glass-card-dark {
+    @apply bg-forest-800/80 backdrop-blur-md border border-forest-700/60 rounded-2xl shadow-card;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-forest-500 hover:bg-forest-600 active:bg-forest-700
+           text-white font-semibold py-3 px-6 rounded-xl
+           transition-all duration-200
+           shadow-soft hover:shadow-glow hover:-translate-y-0.5 active:translate-y-0
+           focus:outline-none focus:ring-2 focus:ring-forest-400 focus:ring-offset-2
+           disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-turmeric-500 hover:bg-turmeric-600 active:bg-turmeric-700
+           text-white font-semibold py-3 px-6 rounded-xl
+           transition-all duration-200 shadow-soft hover:shadow-glow-turmeric hover:-translate-y-0.5
+           focus:outline-none focus:ring-2 focus:ring-turmeric-400 focus:ring-offset-2
+           disabled:opacity-60 disabled:cursor-not-allowed;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2
+           border-2 border-forest-500 text-forest-600
+           hover:bg-forest-500 hover:text-white
+           font-semibold py-3 px-6 rounded-xl
+           transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-forest-400 focus:ring-offset-2
+           disabled:opacity-60 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2
+           text-forest-600 hover:bg-forest-50
+           font-medium py-2 px-4 rounded-lg
+           transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-forest-400 focus:ring-offset-2;
+  }
+
+  /* Input fields */
+  .input-field {
+    @apply w-full px-4 py-3 bg-white border border-beige-300
+           rounded-xl text-forest-800 placeholder-beige-400
+           focus:outline-none focus:ring-2 focus:ring-forest-400 focus:border-transparent
+           transition-all duration-200 font-lato;
+  }
+
+  .input-field:hover:not(:focus) {
+    @apply border-forest-300;
+  }
+
+  /* Cards */
+  .remedy-card {
+    @apply bg-white rounded-2xl shadow-card border border-beige-200
+           overflow-hidden transition-all duration-300;
+  }
+
+  .disease-card {
+    @apply bg-white rounded-2xl shadow-soft border border-beige-200
+           p-6 cursor-pointer transition-all duration-200
+           hover:shadow-card hover:-translate-y-1 hover:border-forest-300;
+  }
+
+  .disease-card.selected {
+    @apply bg-forest-50 border-forest-500 shadow-glow;
+  }
+
+  /* Stepper */
+  .step-active {
+    @apply bg-forest-500 text-white;
+  }
+  .step-done {
+    @apply bg-turmeric-500 text-white;
+  }
+  .step-inactive {
+    @apply bg-beige-200 text-beige-400;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold;
+  }
+  .badge-green  { @apply badge bg-forest-100 text-forest-700; }
+  .badge-amber  { @apply badge bg-turmeric-100 text-turmeric-700; }
+  .badge-red    { @apply badge bg-red-100 text-red-700; }
+  .badge-gray   { @apply badge bg-gray-100 text-gray-600; }
+
+  /* Section headings */
+  .section-title {
+    @apply font-poppins text-2xl font-bold text-forest-800;
+  }
+
+  .page-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Page content area with top padding for navbar */
+  .page-content {
+    @apply pt-20 min-h-screen;
+  }
+}
+
+/* ─── Utility Helpers ─────────────────────────────────────── */
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, #4A7C59 0%, #D4A017 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #D4A017 0%, #E8B84B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-hero {
+    background: linear-gradient(135deg, #0d1f18 0%, #1E3A2F 40%, #2d4f38 70%, #4A7C59 100%);
+  }
+
+  .bg-radial-glow {
+    background: radial-gradient(ellipse at center, rgba(74,124,89,0.15) 0%, transparent 70%);
+  }
+
+  .scrollbar-hidden {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-hidden::-webkit-scrollbar { display: none; }
+
+  .border-dashed-green {
+    border: 2px dashed rgba(74, 124, 89, 0.4);
+  }
+}
+
+/* ─── Custom Scrollbar ────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #F5F0E8; }
+::-webkit-scrollbar-thumb { background: #9CAF88; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #4A7C59; }
+
+/* ─── Animations ──────────────────────────────────────────── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(74, 124, 89, 0.15);
+  border-top-color: #4A7C59;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+/* Leaf decoration */
+.leaf {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: rgba(74, 124, 89, 0.06);
+  border-radius: 0 50% 50% 50%;
+  transform: rotate(-45deg);
+}
+
+/* Remedy result print styles */
+@media print {
+  nav, .no-print { display: none !important; }
+  body { background: white; }
+  .remedy-card { box-shadow: none; border: 1px solid #ddd; }
+}
+
+/* Symptom checkbox */
+.symptom-checkbox {
+  @apply flex items-center gap-3 p-3 rounded-xl border border-beige-200 cursor-pointer
+         hover:bg-forest-50 hover:border-forest-300 transition-all duration-150;
+}
+
+.symptom-checkbox.checked {
+  @apply bg-forest-50 border-forest-400 text-forest-700;
+}
+
+/* Severity buttons */
+.severity-btn {
+  @apply px-6 py-3 rounded-xl border-2 font-semibold transition-all duration-200 cursor-pointer;
+}
+.severity-btn.mild     { @apply border-herb-sage text-herb-sage hover:bg-herb-sage hover:text-white; }
+.severity-btn.moderate { @apply border-turmeric-500 text-turmeric-600 hover:bg-turmeric-500 hover:text-white; }
+.severity-btn.severe   { @apply border-red-400 text-red-500 hover:bg-red-400 hover:text-white; }
+.severity-btn.active   { @apply shadow-card -translate-y-0.5; }
