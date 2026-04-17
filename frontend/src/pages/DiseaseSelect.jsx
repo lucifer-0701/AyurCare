@@ -37,7 +37,7 @@ export default function DiseaseSelect() {
     <div className="min-h-screen bg-beige-50">
       <Navbar />
 
-      <main className="page-content page-container py-8">
+      <main className="page-content page-container pb-8">
         {/* ── Header ─────────────────────────────────────────────────────────── */}
         <div className="mb-8 animate-fade-in">
           {/* Stepper */}

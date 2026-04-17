@@ -64,7 +64,7 @@ export default function RemedyResult() {
     <div className="min-h-screen bg-beige-50">
       <Navbar />
 
-      <main className="page-content page-container py-8 max-w-3xl">
+      <main className="page-content page-container pb-8 max-w-3xl">
         {/* Header */}
         <div className="flex items-center justify-between mb-6 animate-fade-in">
           <div>

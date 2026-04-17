@@ -48,7 +48,7 @@ export default function Profile() {
     <div className="min-h-screen bg-beige-50">
       <Navbar />
 
-      <main className="page-content page-container py-8 max-w-2xl">
+      <main className="page-content page-container pb-8 max-w-2xl">
         <div className="mb-8 animate-fade-in">
           <h1 className="section-title text-3xl mb-1">👤 My Profile</h1>
           <p className="text-beige-400 text-sm">Manage your account and health preferences</p>

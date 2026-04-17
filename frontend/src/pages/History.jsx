@@ -64,7 +64,7 @@ export default function History() {
     <div className="min-h-screen bg-beige-50">
       <Navbar />
 
-      <main className="page-content page-container py-8">
+      <main className="page-content page-container pb-8">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8 animate-fade-in">
           <div>

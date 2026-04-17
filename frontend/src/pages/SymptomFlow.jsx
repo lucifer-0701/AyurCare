@@ -70,7 +70,7 @@ export default function SymptomFlow() {
     <div className="min-h-screen bg-beige-50">
       <Navbar />
 
-      <main className="page-content page-container py-8 max-w-3xl">
+      <main className="page-content page-container pb-8 max-w-3xl">
         {/* Stepper */}
         <div className="flex items-center gap-3 mb-8 animate-fade-in">
           {STEPS.map((label, i) => {
