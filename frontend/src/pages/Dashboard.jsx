@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext.jsx';
 import { supabase } from '../lib/supabase.js';
 import Navbar from '../components/Navbar.jsx';
 import DailyTip from '../components/DailyTip.jsx';
+import { DISEASES } from '../data/diseases.js';
 
 function getGreeting() {
   const h = new Date().getHours();
@@ -19,8 +20,13 @@ export default function Dashboard() {
   const [stats, setStats]       = useState({ total: 0, saved: 0 });
   const [loading, setLoading]   = useState(true);
   const [search, setSearch]     = useState('');
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   const displayName = profile?.name || user?.email?.split('@')[0] || 'there';
+
+  const suggestions = search.trim()
+    ? DISEASES.filter(d => d.name.toLowerCase().includes(search.trim().toLowerCase())).slice(0, 5)
+    : [];
 
   useEffect(() => {
     async function load() {
@@ -86,12 +92,40 @@ export default function Dashboard() {
                 <input
                   type="search"
                   value={search}
-                  onChange={(e) => setSearch(e.target.value)}
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                    setShowSuggestions(true);
+                  }}
+                  onFocus={() => setShowSuggestions(true)}
+                  onBlur={() => setShowSuggestions(false)}
                   placeholder="Search a disease..."
                   className="input-field pl-10 pr-4"
                 />
+
+                {/* Dropdown Suggestions */}
+                {showSuggestions && search.trim() && suggestions.length > 0 && (
+                  <ul className="absolute z-10 top-full left-0 w-full mt-2 bg-white border border-beige-200 rounded-xl shadow-card overflow-hidden animate-slide-up">
+                    {suggestions.map((s) => (
+                      <li
+                        key={s.id}
+                        onMouseDown={(e) => {
+                          e.preventDefault(); // Prevents input from losing focus early
+                          setSearch(s.name);
+                          setShowSuggestions(false);
+                        }}
+                        className="px-4 py-3 hover:bg-forest-50 flex items-center gap-3 transition-colors border-b border-beige-100 last:border-b-0 cursor-pointer"
+                      >
+                        <span className="text-xl flex-shrink-0">{s.icon}</span>
+                        <div className="truncate">
+                          <p className="text-sm font-semibold text-forest-800 truncate">{s.name}</p>
+                          <p className="text-xs text-beige-400 truncate">{s.category}</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
-              <button type="submit" className="ml-2 btn-primary py-2 px-4 text-sm">Search</button>
+              <button type="submit" className="ml-2 btn-primary py-2 px-4 text-sm whitespace-nowrap">Search</button>
             </form>
           </div>
         </div>
